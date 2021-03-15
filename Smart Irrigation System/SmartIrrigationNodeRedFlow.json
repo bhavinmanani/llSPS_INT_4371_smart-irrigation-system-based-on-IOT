@@ -1,0 +1,1053 @@
+[
+    {
+        "id": "d13e14c3.fbe718",
+        "type": "tab",
+        "label": "Flow 1",
+        "disabled": false,
+        "info": ""
+    },
+    {
+        "id": "c449a4ad.2456a8",
+        "type": "ibmiot in",
+        "z": "d13e14c3.fbe718",
+        "authentication": "apiKey",
+        "apiKey": "92669124.53c3c",
+        "inputType": "evt",
+        "logicalInterface": "",
+        "ruleId": "",
+        "deviceId": "1001",
+        "applicationId": "",
+        "deviceType": "rsip",
+        "eventType": "+",
+        "commandType": "",
+        "format": "json",
+        "name": "IBM IoT",
+        "service": "registered",
+        "allDevices": "",
+        "allApplications": "",
+        "allDeviceTypes": "",
+        "allLogicalInterfaces": "",
+        "allEvents": true,
+        "allCommands": "",
+        "allFormats": "",
+        "qos": 0,
+        "x": 110,
+        "y": 80,
+        "wires": [
+            [
+                "f0f34c8d.21191",
+                "5a6bac28.357514",
+                "e4aab095.dca04",
+                "8d1fc8d6.7e4708"
+            ]
+        ]
+    },
+    {
+        "id": "f0f34c8d.21191",
+        "type": "debug",
+        "z": "d13e14c3.fbe718",
+        "name": "",
+        "active": false,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 750,
+        "y": 360,
+        "wires": []
+    },
+    {
+        "id": "5a6bac28.357514",
+        "type": "function",
+        "z": "d13e14c3.fbe718",
+        "name": "temperature",
+        "func": "global.set('temperature',msg.payload.d.temperature)\nreturn {payload:msg.payload.d.temperature}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 450,
+        "y": 60,
+        "wires": [
+            [
+                "f0f34c8d.21191",
+                "35eaa98c.e3d356",
+                "7bed7f78.ed7be"
+            ]
+        ]
+    },
+    {
+        "id": "e4aab095.dca04",
+        "type": "function",
+        "z": "d13e14c3.fbe718",
+        "name": "humidity",
+        "func": "global.set('humidity',msg.payload.d.humidity)\nreturn {payload:msg.payload.d.humidity}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 440,
+        "y": 180,
+        "wires": [
+            [
+                "f0f34c8d.21191",
+                "d8d95d06.88bbb",
+                "64b852c7.6d9d6c"
+            ]
+        ]
+    },
+    {
+        "id": "8d1fc8d6.7e4708",
+        "type": "function",
+        "z": "d13e14c3.fbe718",
+        "name": "soil moisture sensor",
+        "func": "global.set('soilmoisturesensor',msg.payload.d.objectTemp)\nreturn {payload:msg.payload.d.objectTemp}",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 340,
+        "y": 320,
+        "wires": [
+            [
+                "f0f34c8d.21191",
+                "a15c806a.417aa",
+                "8cac3c5d.311df"
+            ]
+        ]
+    },
+    {
+        "id": "35eaa98c.e3d356",
+        "type": "ui_gauge",
+        "z": "d13e14c3.fbe718",
+        "name": "Temperature",
+        "group": "fcaa8cc8.2028d",
+        "order": 1,
+        "width": 11,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Temperature",
+        "label": "C",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 1030,
+        "y": 60,
+        "wires": []
+    },
+    {
+        "id": "d8d95d06.88bbb",
+        "type": "ui_gauge",
+        "z": "d13e14c3.fbe718",
+        "name": "Humidity",
+        "group": "fcaa8cc8.2028d",
+        "order": 3,
+        "width": 11,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 1020,
+        "y": 100,
+        "wires": []
+    },
+    {
+        "id": "a15c806a.417aa",
+        "type": "ui_gauge",
+        "z": "d13e14c3.fbe718",
+        "name": "Soil Moisture Sensor",
+        "group": "fcaa8cc8.2028d",
+        "order": 5,
+        "width": 11,
+        "height": 5,
+        "gtype": "gage",
+        "title": "Soil Moisture Sensor",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 1000,
+        "y": 220,
+        "wires": []
+    },
+    {
+        "id": "1c9dce45.6179e2",
+        "type": "http in",
+        "z": "d13e14c3.fbe718",
+        "name": "",
+        "url": "/data",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 120,
+        "y": 580,
+        "wires": [
+            [
+                "9adc4b29.a8d968",
+                "ebebc51f.698168"
+            ]
+        ]
+    },
+    {
+        "id": "3dd46b8f.cb9114",
+        "type": "http response",
+        "z": "d13e14c3.fbe718",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 510,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "9adc4b29.a8d968",
+        "type": "function",
+        "z": "d13e14c3.fbe718",
+        "name": "httpresponse",
+        "func": "msg.payload={\"temperature\":global.get('temperature'),\"humidity\":global.get('humidity'),\"soilmoisturesensor\":global.get('soilmoisturesensor')}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 350,
+        "y": 500,
+        "wires": [
+            [
+                "3dd46b8f.cb9114"
+            ]
+        ]
+    },
+    {
+        "id": "8c7ff369.ba4ff",
+        "type": "ui_button",
+        "z": "d13e14c3.fbe718",
+        "name": "Motor On",
+        "group": "fcaa8cc8.2028d",
+        "order": 7,
+        "width": 11,
+        "height": 1,
+        "passthru": false,
+        "label": "Motor On",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"command\":\"motoron\"}",
+        "payloadType": "json",
+        "topic": "",
+        "x": 500,
+        "y": 960,
+        "wires": [
+            [
+                "d4acb48c.9c7548",
+                "eb709e0.925866",
+                "9041e7ee.7936a8",
+                "b9054f7e.e51ac"
+            ]
+        ]
+    },
+    {
+        "id": "9ee0b7e2.fbbd28",
+        "type": "ui_button",
+        "z": "d13e14c3.fbe718",
+        "name": "Motor Off",
+        "group": "fcaa8cc8.2028d",
+        "order": 9,
+        "width": 11,
+        "height": 1,
+        "passthru": false,
+        "label": "Motor Off",
+        "tooltip": "",
+        "color": "",
+        "bgcolor": "",
+        "icon": "",
+        "payload": "{\"command\":\"motoroff\"}",
+        "payloadType": "json",
+        "topic": "",
+        "x": 500,
+        "y": 1040,
+        "wires": [
+            [
+                "d4acb48c.9c7548",
+                "eb709e0.925866",
+                "9df1ce65.81145",
+                "b9054f7e.e51ac"
+            ]
+        ]
+    },
+    {
+        "id": "d4acb48c.9c7548",
+        "type": "debug",
+        "z": "d13e14c3.fbe718",
+        "name": "Button Status",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 1020,
+        "y": 980,
+        "wires": []
+    },
+    {
+        "id": "67fe0db7.6c3304",
+        "type": "http response",
+        "z": "d13e14c3.fbe718",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 850,
+        "y": 1160,
+        "wires": []
+    },
+    {
+        "id": "72aa4419.5c788c",
+        "type": "function",
+        "z": "d13e14c3.fbe718",
+        "name": "commands",
+        "func": "msg.payload = msg.payload.command\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 610,
+        "y": 1200,
+        "wires": [
+            [
+                "67fe0db7.6c3304",
+                "7e853c5c.623904",
+                "eb709e0.925866"
+            ]
+        ]
+    },
+    {
+        "id": "7e853c5c.623904",
+        "type": "debug",
+        "z": "d13e14c3.fbe718",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 810,
+        "y": 1220,
+        "wires": []
+    },
+    {
+        "id": "eb709e0.925866",
+        "type": "ibmiot out",
+        "z": "d13e14c3.fbe718",
+        "authentication": "apiKey",
+        "apiKey": "92669124.53c3c",
+        "outputType": "cmd",
+        "deviceId": "1001",
+        "deviceType": "rsip",
+        "eventCommandType": "home",
+        "format": "json",
+        "data": "data",
+        "qos": 0,
+        "name": "IBM IoT",
+        "service": "registered",
+        "x": 1240,
+        "y": 1080,
+        "wires": []
+    },
+    {
+        "id": "7bed7f78.ed7be",
+        "type": "ui_chart",
+        "z": "d13e14c3.fbe718",
+        "name": "Temperature Chart",
+        "group": "fcaa8cc8.2028d",
+        "order": 2,
+        "width": 11,
+        "height": 5,
+        "label": "Temperature Chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": true,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": 1,
+        "removeOlderPoints": "",
+        "removeOlderUnit": "60",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 1030,
+        "y": 20,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "64b852c7.6d9d6c",
+        "type": "ui_chart",
+        "z": "d13e14c3.fbe718",
+        "name": "Humidity Chart",
+        "group": "fcaa8cc8.2028d",
+        "order": 4,
+        "width": 11,
+        "height": 5,
+        "label": "Humidity Chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "HH:mm:ss",
+        "interpolate": "linear",
+        "nodata": "",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "100",
+        "removeOlder": "5",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "1",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#d62728",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 1020,
+        "y": 160,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "8cac3c5d.311df",
+        "type": "ui_chart",
+        "z": "d13e14c3.fbe718",
+        "name": "Soil Moisture Chart",
+        "group": "fcaa8cc8.2028d",
+        "order": 6,
+        "width": 11,
+        "height": 5,
+        "label": "Soil Moisture Chart",
+        "chartType": "line",
+        "legend": "false",
+        "xformat": "dd HH:mm",
+        "interpolate": "linear",
+        "nodata": "Wait",
+        "dot": false,
+        "ymin": "0",
+        "ymax": "1000",
+        "removeOlder": "5",
+        "removeOlderPoints": "",
+        "removeOlderUnit": "1",
+        "cutout": 0,
+        "useOneColor": false,
+        "useUTC": false,
+        "colors": [
+            "#1f77b4",
+            "#aec7e8",
+            "#ff7f0e",
+            "#2ca02c",
+            "#98df8a",
+            "#cc2828",
+            "#ff9896",
+            "#9467bd",
+            "#c5b0d5"
+        ],
+        "outputs": 1,
+        "useDifferentColor": false,
+        "x": 1030,
+        "y": 280,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "d204bba3.17ee68",
+        "type": "change",
+        "z": "d13e14c3.fbe718",
+        "name": "Humidity",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.main.humidity",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 600,
+        "y": 1400,
+        "wires": [
+            [
+                "be9baa61.fa0fb8",
+                "e1f9f3b3.a3d42"
+            ]
+        ]
+    },
+    {
+        "id": "50ea4d13.c2a094",
+        "type": "change",
+        "z": "d13e14c3.fbe718",
+        "name": "Wind Speed",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.wind.speed",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 610,
+        "y": 1480,
+        "wires": [
+            [
+                "9a278c47.b2902",
+                "e1f9f3b3.a3d42"
+            ]
+        ]
+    },
+    {
+        "id": "8c798b6c.0d5438",
+        "type": "change",
+        "z": "d13e14c3.fbe718",
+        "name": "Pressure",
+        "rules": [
+            {
+                "t": "set",
+                "p": "payload",
+                "pt": "msg",
+                "to": "payload.main.pressure",
+                "tot": "msg"
+            }
+        ],
+        "action": "",
+        "property": "",
+        "from": "",
+        "to": "",
+        "reg": false,
+        "x": 580,
+        "y": 1580,
+        "wires": [
+            [
+                "8658b812.2f3598",
+                "e1f9f3b3.a3d42"
+            ]
+        ]
+    },
+    {
+        "id": "be9baa61.fa0fb8",
+        "type": "ui_gauge",
+        "z": "d13e14c3.fbe718",
+        "name": "Humidity",
+        "group": "289022e3.15e94e",
+        "order": 1,
+        "width": 8,
+        "height": 6,
+        "gtype": "gage",
+        "title": "Humidity",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "100",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 1040,
+        "y": 1400,
+        "wires": []
+    },
+    {
+        "id": "e1f9f3b3.a3d42",
+        "type": "debug",
+        "z": "d13e14c3.fbe718",
+        "name": "",
+        "active": true,
+        "tosidebar": true,
+        "console": false,
+        "tostatus": false,
+        "complete": "payload",
+        "targetType": "msg",
+        "statusVal": "",
+        "statusType": "auto",
+        "x": 870,
+        "y": 1500,
+        "wires": []
+    },
+    {
+        "id": "89839596.2af578",
+        "type": "http request",
+        "z": "d13e14c3.fbe718",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "http://api.openweathermap.org/data/2.5/weather?q=surat&appid=4f9d549c58eaf375600dab6de165f7d5",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 350,
+        "y": 1480,
+        "wires": [
+            [
+                "d204bba3.17ee68",
+                "50ea4d13.c2a094",
+                "8c798b6c.0d5438"
+            ]
+        ]
+    },
+    {
+        "id": "386a27de.603968",
+        "type": "inject",
+        "z": "d13e14c3.fbe718",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "5",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 130,
+        "y": 1420,
+        "wires": [
+            [
+                "89839596.2af578"
+            ]
+        ]
+    },
+    {
+        "id": "9a278c47.b2902",
+        "type": "ui_gauge",
+        "z": "d13e14c3.fbe718",
+        "name": "Wind Speed",
+        "group": "289022e3.15e94e",
+        "order": 2,
+        "width": 8,
+        "height": 6,
+        "gtype": "gage",
+        "title": "Wind Speed",
+        "label": "units",
+        "format": "{{value}}",
+        "min": 0,
+        "max": 10,
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 1050,
+        "y": 1480,
+        "wires": []
+    },
+    {
+        "id": "8658b812.2f3598",
+        "type": "ui_gauge",
+        "z": "d13e14c3.fbe718",
+        "name": "Pressure",
+        "group": "289022e3.15e94e",
+        "order": 3,
+        "width": 0,
+        "height": 0,
+        "gtype": "gage",
+        "title": "Pressure",
+        "label": "pascal",
+        "format": "{{value}}",
+        "min": 0,
+        "max": "5000",
+        "colors": [
+            "#00b500",
+            "#e6e600",
+            "#ca3838"
+        ],
+        "seg1": "",
+        "seg2": "",
+        "x": 1060,
+        "y": 1580,
+        "wires": []
+    },
+    {
+        "id": "6065152.7676cec",
+        "type": "ui_toast",
+        "z": "d13e14c3.fbe718",
+        "position": "bottom left",
+        "displayTime": "5",
+        "highlight": "black",
+        "sendall": false,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": true,
+        "topic": "Moisture Reading is Low..",
+        "name": "",
+        "x": 1050,
+        "y": 560,
+        "wires": []
+    },
+    {
+        "id": "a8e7a873.1363a8",
+        "type": "switch",
+        "z": "d13e14c3.fbe718",
+        "name": "",
+        "property": "payload.soilmoisturesensor",
+        "propertyType": "msg",
+        "rules": [
+            {
+                "t": "lte",
+                "v": "10",
+                "vt": "str"
+            },
+            {
+                "t": "btwn",
+                "v": "11",
+                "vt": "num",
+                "v2": "20",
+                "v2t": "num"
+            },
+            {
+                "t": "btwn",
+                "v": "30",
+                "vt": "num",
+                "v2": "35",
+                "v2t": "num"
+            },
+            {
+                "t": "gte",
+                "v": "95",
+                "vt": "str"
+            }
+        ],
+        "checkall": "true",
+        "repair": true,
+        "outputs": 4,
+        "x": 670,
+        "y": 680,
+        "wires": [
+            [
+                "3ac67148.0adece"
+            ],
+            [
+                "6065152.7676cec"
+            ],
+            [
+                "952f8fa2.f155e"
+            ],
+            [
+                "9ac60fc8.7f83"
+            ]
+        ]
+    },
+    {
+        "id": "9041e7ee.7936a8",
+        "type": "ui_toast",
+        "z": "d13e14c3.fbe718",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": true,
+        "topic": "Motor Turned ON!",
+        "name": "Motor dialog",
+        "x": 290,
+        "y": 960,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "9df1ce65.81145",
+        "type": "ui_toast",
+        "z": "d13e14c3.fbe718",
+        "position": "dialog",
+        "displayTime": "3",
+        "highlight": "",
+        "sendall": true,
+        "outputs": 1,
+        "ok": "OK",
+        "cancel": "",
+        "raw": true,
+        "topic": "Motor Turned OFF!",
+        "name": "Motor dialog",
+        "x": 270,
+        "y": 1040,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "3ac67148.0adece",
+        "type": "http request",
+        "z": "d13e14c3.fbe718",
+        "name": "",
+        "method": "GET",
+        "ret": "txt",
+        "paytoqs": "ignore",
+        "url": "https://www.fast2sms.com/dev/bulkV2?authorization=7yfGYbDh6IrUlMVTQLHovN0d2zFZwpRWXCSgJsPKq9kenux8Oiqiuxs3wAQkEtN0jyBMpVzOfPWdU2YR&route=q&message=Motor%20On&language=english&flash=0&numbers=8866077479",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 830,
+        "y": 540,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "5c5c197d.6c4cf8",
+        "type": "http in",
+        "z": "d13e14c3.fbe718",
+        "name": "",
+        "url": "/message",
+        "method": "get",
+        "upload": false,
+        "swaggerDoc": "",
+        "x": 410,
+        "y": 1160,
+        "wires": [
+            [
+                "72aa4419.5c788c"
+            ]
+        ]
+    },
+    {
+        "id": "711f0b41.b64374",
+        "type": "ui_text",
+        "z": "d13e14c3.fbe718",
+        "group": "fcaa8cc8.2028d",
+        "order": 8,
+        "width": 11,
+        "height": 2,
+        "name": "",
+        "label": "Motor Status",
+        "format": "{{msg.payload}}",
+        "layout": "col-center",
+        "x": 1190,
+        "y": 820,
+        "wires": []
+    },
+    {
+        "id": "b9054f7e.e51ac",
+        "type": "function",
+        "z": "d13e14c3.fbe718",
+        "name": "",
+        "func": "msg.payload=msg.payload.command\nif(msg.payload == \"motoron\")\n{\n    msg.payload=\"Motor is on\";\n}\nelse\n{\n    msg.payload=\"Motor is off\";\n}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 880,
+        "y": 880,
+        "wires": [
+            [
+                "711f0b41.b64374"
+            ]
+        ]
+    },
+    {
+        "id": "952f8fa2.f155e",
+        "type": "http request",
+        "z": "d13e14c3.fbe718",
+        "name": "",
+        "method": "GET",
+        "ret": "obj",
+        "paytoqs": "ignore",
+        "url": "https://node-red-pwiml-2021-01-29.eu-gb.mybluemix.net/message?command={%22command%22:motoron}",
+        "tls": "",
+        "persist": false,
+        "proxy": "",
+        "authType": "",
+        "x": 1030,
+        "y": 620,
+        "wires": [
+            []
+        ]
+    },
+    {
+        "id": "6407eea8.89ebb",
+        "type": "inject",
+        "z": "d13e14c3.fbe718",
+        "name": "",
+        "props": [
+            {
+                "p": "payload"
+            },
+            {
+                "p": "topic",
+                "vt": "str"
+            }
+        ],
+        "repeat": "10",
+        "crontab": "",
+        "once": true,
+        "onceDelay": "10",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "x": 190,
+        "y": 720,
+        "wires": [
+            [
+                "ebebc51f.698168"
+            ]
+        ]
+    },
+    {
+        "id": "ebebc51f.698168",
+        "type": "function",
+        "z": "d13e14c3.fbe718",
+        "name": "",
+        "func": "msg.payload={\"soilmoisturesensor\":global.get('soilmoisturesensor')}\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "initialize": "",
+        "finalize": "",
+        "x": 420,
+        "y": 680,
+        "wires": [
+            [
+                "a8e7a873.1363a8"
+            ]
+        ]
+    },
+    {
+        "id": "9ac60fc8.7f83",
+        "type": "ui_toast",
+        "z": "d13e14c3.fbe718",
+        "position": "bottom left",
+        "displayTime": "5",
+        "highlight": "black",
+        "sendall": false,
+        "outputs": 0,
+        "ok": "OK",
+        "cancel": "",
+        "raw": true,
+        "topic": "Moisture Reading is High..",
+        "name": "",
+        "x": 1050,
+        "y": 680,
+        "wires": []
+    },
+    {
+        "id": "92669124.53c3c",
+        "type": "ibmiot",
+        "name": "iotdevice",
+        "keepalive": "60",
+        "serverName": "l0iga1.messaging.internetofthings.ibmcloud.com",
+        "cleansession": true,
+        "appId": "",
+        "shared": false
+    },
+    {
+        "id": "fcaa8cc8.2028d",
+        "type": "ui_group",
+        "name": "Sensor Data",
+        "tab": "24e52ce.e9066d4",
+        "order": 1,
+        "disp": true,
+        "width": 22,
+        "collapse": false
+    },
+    {
+        "id": "289022e3.15e94e",
+        "type": "ui_group",
+        "name": "Open Weather",
+        "tab": "24e52ce.e9066d4",
+        "order": 2,
+        "disp": true,
+        "width": 8,
+        "collapse": false
+    },
+    {
+        "id": "24e52ce.e9066d4",
+        "type": "ui_tab",
+        "name": "Smart Irrigation System",
+        "icon": "dashboard",
+        "order": 1,
+        "disabled": false,
+        "hidden": false
+    }
+]
